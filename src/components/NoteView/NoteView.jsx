@@ -8,16 +8,15 @@ export default function NoteView() {
   const { activeNote, setActiveNote } = useContext(ActiveNote);
   const { notes, setNotes } = useContext(NoteContext);
   const [editMode, setEditMode] = useState(false);
-  const [noteBody, setNoteBody] = useState("");
 
-  const handleSaveNoteBody = (id) => {
-    setEditMode(false);
-
-    const editedNoteIndex = notes.findIndex((note) => note.id === id);
+  const handleEditNoteBody = (newBodyText) => {
+    const editedNoteIndex = notes.findIndex(
+      (note) => note.id === activeNote.id
+    );
 
     const newNote = {
       ...activeNote,
-      body: noteBody,
+      body: newBodyText,
     };
 
     // using the index, we replace 1 item in the array with the newNote object
@@ -43,17 +42,13 @@ export default function NoteView() {
   return (
     <div className={styles.container}>
       <ul className={styles.actions}>
-        {editMode ? (
-          <li onClick={() => handleSaveNoteBody(activeNote.id)}>Save</li>
-        ) : (
-          <li onClick={() => setEditMode(true)}>Edit</li>
-        )}
+        <li onClick={() => setEditMode(!editMode)}>Edit</li>
         <li onClick={() => handleDeleteNote(activeNote.id)}>🚮</li>
       </ul>
       <h3>{activeNote.title}</h3>
       {editMode ? (
         <textarea
-          onChange={(event) => setNoteBody(event.target.value)} // store in the state, all changes to textarea
+          onChange={(event) => handleEditNoteBody(event.target.value)} // store in the state, all changes to textarea
           defaultValue={activeNote.body}
         />
       ) : (
