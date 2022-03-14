@@ -1,0 +1,10 @@
+.container {
+    width: 20%;
+    color: white;
+    background-color: black;
+}
+
+.container li:hover {
+    cursor: pointer;
+    font-weight: bold;
+}

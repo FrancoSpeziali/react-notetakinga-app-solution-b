@@ -1,0 +1,25 @@
+.container {
+    margin-left: 20px;
+    width: 80%;
+    color: black;
+    background-color: white;
+}
+
+.actions li {
+    text-decoration: underline;
+}
+
+.actions li:hover {
+    cursor: pointer;
+}
+
+.container textarea {
+    width: 90%;
+    height: 500px;
+    font-size: 18px;
+    font-family: 'Noto Sans JP', sans-serif;
+    border-radius: 5px;
+    box-shadow: 2px 2px grey;
+    background-color: #384047;
+    color: white;
+}
